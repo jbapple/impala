@@ -51,6 +51,11 @@ add_library(fesupport SHARED
   fe-support.cc
 )
 add_dependencies(fesupport gen-deps)
+target_link_libraries(fesupport "-Wl,--whole-archive \
+$ENV{IMPALA_TOOLCHAIN}/llvm-$ENV{IMPALA_LLVM_VERSION}/lib/clang/*/lib/linux/\
+libclang_rt.ubsan_standalone_cxx-x86_64.a \
+$ENV{IMPALA_TOOLCHAIN}/llvm-$ENV{IMPALA_LLVM_VERSION}/lib/clang/*/lib/linux/\
+libclang_rt.ubsan_standalone-x86_64.a -Wl,--no-whole-archive")
 
 target_link_libraries(fesupport ${IMPALA_LINK_LIBS_DYNAMIC_TARGETS})
 
