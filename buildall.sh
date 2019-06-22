@@ -420,6 +420,7 @@ build_all_components() {
       MAKE_TARGETS+=" impala-lzo"
     fi
   fi
+  find ${IMPALA_HOME} | sort
   ${MAKE_CMD} -j${IMPALA_BUILD_THREADS:-4} ${IMPALA_MAKE_FLAGS} ${MAKE_TARGETS}
 }
 
